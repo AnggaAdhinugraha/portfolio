@@ -1,0 +1,212 @@
+{
+  "profile": {
+    "name": "Angga Adhinugraha",
+    "title": "Full Stack Web Developer | System Analyst",
+    "subtitle": "Teknologi Informasi · IPK 3.90",
+    "email": "anggaadhinugraha06@gmail.com",
+    "phone": "082234512521",
+    "location": "Cikarang, Kab Bekasi, Jawa Barat",
+    "github": "https://github.com/AnggaAdhinugraha",
+    "linkedin": "www.linkedin.com/in/angga-adhinugraha-815b02326",
+    "portfolio": "#",
+    "photo": "/uploads/1778989487657-932043466.jpeg",
+    "summary": "Lulusan S1 Teknologi Informasi Universitas Bina Sarana Informatika tahun 2025 dengan IPK 3.90 yang memiliki kemampuan dalam pengembangan aplikasi berbasis web menggunakan Node.js, Django, dan CodeIgniter. Berpengalaman mengembangkan proyek secara mandiri mulai dari perancangan sistem, pengembangan fitur, hingga implementasi database. Memiliki ketelitian tinggi, kemampuan bekerja sama dalam tim, mudah beradaptasi, serta semangat belajar yang kuat untuk berkembang dan berkontribusi di lingkungan kerja profesional."
+  },
+  "education": [
+    {
+      "id": 1,
+      "school": "Universitas Bina Sarana Informatika",
+      "degree": "S1 Teknologi Informasi",
+      "period": "Sept 2021 - Agustus 2025",
+      "gpa": "3.90/4.00",
+      "description": "Lulus dengan predikat sangat memuaskan."
+    },
+    {
+      "id": 2,
+      "school": "SMK Bintang Harapan",
+      "degree": "Teknik Komputer & Jaringan",
+      "period": "Mei 2018 - Mei 2021",
+      "gpa": "",
+      "description": ""
+    }
+  ],
+  "experience": [
+    {
+      "company": "SoftUni Indonesia",
+      "role": "Web Developer",
+      "period": "6 Sep 2024 - 31 Des 2024",
+      "type": "Studi Independen",
+      "points": [
+        "Mempelajari dan mengimplementasikan bahasa pemrograman Python, konsep Object-Oriented Programming (OOP), serta pengembangan web menggunakan framework Django dan database PostgreSQL dalam pembuatan aplikasi berbasis web.",
+        "Mengembangkan proyek website secara mandiri mulai dari tahap perancangan sistem, pengembangan fitur, implementasi database, hingga proses pengujian untuk memastikan aplikasi berjalan optimal dan fungsional.",
+        "Berhasil meraih penghargaan Best Project pada program SoftUni Indonesia MSIB Batch 7 Kampus Merdeka atas inovasi, kualitas implementasi, serta performa pengembangan proyek yang unggul."
+      ],
+      "id": 1778995549727
+    },
+    {
+      "company": "J.Co Donuts & Coffee",
+      "role": "Part Time Crew Store",
+      "period": "4 Mar 2024 - 8 Mar 2024",
+      "type": "Part Time",
+      "points": [
+        "Melayani rata-rata lebih dari 200 pelanggan per hari dengan pelayanan yang cepat, ramah, dan responsif untuk menjaga kepuasan pelanggan selama operasional berlangsung.",
+        "Berkoordinasi dengan tim operasional dalam menjaga efisiensi pelayanan, pengelolaan antrean, serta pencapaian target penjualan harian terutama pada jam sibuk dan periode promo/event.",
+        "Mendukung proses produksi bersama tim kitchen/baker dalam menyiapkan hingga lebih dari 800 donat per hari guna memastikan ketersediaan produk tetap optimal dan sesuai standar kualitas perusahaan."
+      ],
+      "id": 1778995442590
+    },
+    {
+      "company": "PT. Oriental Electronics Indonesia",
+      "role": "Operator Produksi & Packer Support",
+      "period": "12 Sept 2019 - 12 Mar 2020",
+      "type": "Praktik Kerja Lapangan",
+      "points": [
+        "Terlibat langsung dalam proses produksi dan pengemasan barang ekspor selama 6 bulan dengan menangani rata-rata lebih dari 15.000 unit produk per minggu secara efisien dan sesuai standar operasional.",
+        "Melakukan pelabelan produk serta memastikan akurasi data produksi dan kualitas barang sebelum proses distribusi dan pengiriman dilakukan.",
+        "Berkoordinasi dengan tim produksi untuk memastikan target output harian mencapai 600–700+ unit produk dengan tetap menjaga ketepatan waktu dan kualitas kerja."
+      ],
+      "id": 1778995224627
+    }
+  ],
+  "projects": [
+    {
+      "title": "Warehouse Management System",
+      "description": "Warehouse Management System adalah aplikasi web yang dikembangkan secara mandiri untuk mengotomatisasi dan menyederhanakan pengelolaan operasional gudang. Sistem ini mencakup manajemen barang, stok, supplier, toko, proses pemesanan, dan pelaporan. Semuanya dalam satu platform yang aman dengan autentikasi JWT dan kontrol akses berbasis peran (RBAC)",
+      "tech": [
+        "JavaScript",
+        "Node.js",
+        "Express.js",
+        "HTML & CSS",
+        "MySQL"
+      ],
+      "github": "https://github.com/AnggaAdhinugraha/Warehouse_system.git",
+      "demo": "",
+      "id": 1779072679988,
+      "image": "/uploads/1779164301885-154968858.png"
+    },
+    {
+      "title": "Student Management System Web",
+      "description": "Student Management System adalah aplikasi web yang dikembangkan secara mandiri sebagai proyek akhir program MSIB Batch 7. Sistem ini dirancang untuk mempermudah pengelolaan data akademik sekolah, mencakup manajemen siswa, guru, mata pelajaran, jurusan, serta sistem pemberian tugas kepada siswa. Dibangun menggunakan Python dan framework Django dengan database PostgreSQL.",
+      "tech": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Bootstrap",
+        "ApexCharts",
+        "HTML & CSS",
+        "Java Script"
+      ],
+      "github": "https://github.com/AnggaAdhinugraha/Student_Management_System_Web",
+      "demo": "",
+      "id": 1778994193690,
+      "image": "/uploads/1778994193672-536468236.png"
+    },
+    {
+      "title": "Employee Payroll Website",
+      "description": "Employee Payroll Web adalah aplikasi web manajemen kepegawaian yang dikembangkan secara mandiri sebagai tugas akhir semester 6. Sistem ini mengotomatisasi tiga proses inti HR, seperti : pencatatan kehadiran karyawan, pengelolaan izin, dan perhitungan gaji dalam satu platform yang terintegrasi dan mudah digunakan. Dibangun menggunakan PHP, framework CodeIgniter, dan database MySQL.",
+      "tech": [
+        "PHP",
+        "MySQL",
+        "CodeIgniter",
+        "Boostrap",
+        "HTML & CSS",
+        "JavaScript"
+      ],
+      "github": "https://github.com/AnggaAdhinugraha/Employee_Payroll_Web",
+      "demo": "",
+      "id": 1778993973557,
+      "image": "/uploads/1778993973538-860469191.png"
+    }
+  ],
+  "skills": {
+    "hard": [
+      "Python",
+      "PHP",
+      "JavaScript",
+      "MySQL",
+      "PostgreSQL",
+      "Django",
+      "CodeIgniter",
+      "Node.js",
+      "Express.js",
+      "HTML & CSS",
+      "Microsoft Office",
+      "Canva"
+    ],
+    "soft": [
+      "Mampu Memecahkan Masalah",
+      "Berfikir Kritis",
+      "Terbiasa Bekerja Dalam Target",
+      "Kerja Sama Tim",
+      "Tanggung Jawab",
+      "Mudah Adaptasi",
+      "Manajemen Waktu",
+      "Komunikasi Yang Baik"
+    ]
+  },
+  "certificates": [
+    {
+      "title": "Intermediate Network Administrator",
+      "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
+      "year": "2025",
+      "link": "https://drive.google.com/file/d/12hi62LvBeNJJIUnjmdCSeG-zVMONwiuF/view",
+      "id": 1778996826277
+    },
+    {
+      "title": "Sertifikat Toefl",
+      "issuer": "Elskill English Course",
+      "year": "2025",
+      "link": "https://drive.google.com/file/d/1DONIviVKRP0xnTOtVL930OeuWU3AEsMp/view?usp=sharing",
+      "id": 1778996739099
+    },
+    {
+      "title": "Certificate of Achievement Best Project MSIB 7",
+      "issuer": "SoftUni Indonesia",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/17FHUL9lPktfOgkMAVUB2w28FiiPHiEch/view?usp=sharing",
+      "id": 1778996682862
+    },
+    {
+      "title": "Django Advanced MSIB7 2024 - Certificate",
+      "issuer": "SoftUni Indonesia",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/19v_smdR5WpixNUyv98fdzFGfHoK6aZI5/view?usp=sharing",
+      "id": 1778996633961
+    },
+    {
+      "title": "Python Advanced MSIB 7 2024 - Certificate",
+      "issuer": "SoftUni Indonesia",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/1cK2ijch-pkjsH_D_BUSiX7jJFrUmNlMh/view?usp=sharing",
+      "id": 1778996568979
+    },
+    {
+      "title": "PostgreSQL MSIB 7 2024 - Certificate",
+      "issuer": "SoftUni Indonesia",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/1cyE-nftSPNhYRo__dcU_TiOzkJn-9xLd/view?usp=sharing",
+      "id": 1778996502474
+    },
+    {
+      "title": "JS Front End MSIB 7 2024 - Certificate",
+      "issuer": "SoftUni Indonesia",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/1cgFWKWqCWSbrYt9c3hTqtLp96npIeH3o/view?usp=sharing",
+      "id": 1778996431615
+    },
+    {
+      "title": "Sertifikat Peserta MSIB Angkatan 7",
+      "issuer": "SoftUni Indonesia",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/179f3j4edQuRtUSSbDI0caCQ9DAhJI_6h/view?usp=sharing",
+      "id": 1778996355855
+    },
+    {
+      "title": "Program Analyst",
+      "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
+      "year": "2024",
+      "link": "https://drive.google.com/file/d/1WmgEa4x8WI5Mq6tW5ga9V8_b0pTjR2qz/view?usp=sharing",
+      "id": 1778995679006
+    }
+  ]
+}

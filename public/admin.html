@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Portfolio Angga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css" />
+
+  <!-- Tambahan style untuk modal & btn-edit -->
+  <style>
+    /* ===== MODAL OVERLAY ===== */
+    .edit-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .edit-modal.open { display: flex; }
+    .modal-box {
+      background: var(--surface, #111827);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      position: relative;
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform: translateY(20px) scale(0.97); }
+      to   { opacity:1; transform: translateY(0) scale(1); }
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text, #f1f5f9);
+      margin: 0;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-muted, #94a3b8);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.08); }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: .75rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .btn-edit {
+      padding: .35rem .75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(56,189,248,0.4);
+      background: rgba(56,189,248,0.08);
+      color: #38bdf8;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .15s;
+    }
+    .btn-edit:hover { background: rgba(56,189,248,0.18); }
+  </style>
+</head>
+<body class="login-mode">
+
+  <!-- LOGIN OVERLAY -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <div class="login-logo">AA<span>.</span></div>
+      <h2>Admin Login</h2>
+      <p>Masuk untuk mengelola portfolio</p>
+      <div id="loginError" class="login-error" style="display:none"></div>
+      <input type="text" id="loginUser" placeholder="Username" />
+      <input type="password" id="loginPass" placeholder="Password" />
+      <button class="btn-login" id="loginBtn">Masuk</button>
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="edit-modal" id="editModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="modalTitle">Edit</h2>
+        <button class="modal-close" id="modalCloseBtn">✕</button>
+      </div>
+      <div id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn-sec" id="modalCancelBtn" onclick="closeModal()">Batal</button>
+        <button class="btn-primary" id="modalSaveBtn">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-wrap" id="adminWrap" style="display:none">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">AA<span>.</span> Admin</div>
+      <nav class="sidebar-nav">
+        <button class="snav-btn active" data-tab="profile">👤 Profil</button>
+        <button class="snav-btn" data-tab="experience">💼 Pengalaman</button>
+        <button class="snav-btn" data-tab="education">🎓 Pendidikan</button>
+        <button class="snav-btn" data-tab="projects">🚀 Project</button>
+        <button class="snav-btn" data-tab="skills">⚡ Keahlian</button>
+        <button class="snav-btn" data-tab="certificates">🏅 Sertifikat</button>
+      </nav>
+      <div class="sidebar-actions">
+        <a href="/" target="_blank" class="btn-view">Lihat Portfolio</a>
+        <button class="btn-logout" id="logoutBtn">Keluar</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1 id="tabTitle">Profil</h1>
+        <div class="toast" id="toast"></div>
+      </div>
+
+      <!-- ===== TAB: PROFILE ===== -->
+      <div class="tab-pane active" id="tab-profile">
+        <div class="card">
+          <h3 class="card-title">Foto Profil</h3>
+          <div class="photo-preview-wrap">
+            <img src="" alt="Foto Profil" class="photo-preview" id="photoPreview" />
+            <div>
+              <input type="file" id="photoFile" accept="image/*" hidden />
+              <button class="btn-sec" onclick="document.getElementById('photoFile').click()">Ganti Foto</button>
+              <p class="hint">JPG/PNG/WEBP, max 5MB</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Informasi Dasar</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nama Lengkap</label>
+              <input type="text" id="pName" placeholder="Nama Lengkap" />
+            </div>
+            <div class="form-group">
+              <label>Jabatan / Title</label>
+              <input type="text" id="pTitle" placeholder="Full Stack Web Developer" />
+            </div>
+            <div class="form-group">
+              <label>Subtitle</label>
+              <input type="text" id="pSubtitle" placeholder="IT Graduate · IPK 3.90" />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="pEmail" placeholder="email@example.com" />
+            </div>
+            <div class="form-group">
+              <label>Nomor HP</label>
+              <input type="text" id="pPhone" placeholder="08xxxxxxxxxx" />
+            </div>
+            <div class="form-group">
+              <label>Lokasi</label>
+              <input type="text" id="pLocation" placeholder="Kota, Provinsi" />
+            </div>
+            <div class="form-group">
+              <label>Link GitHub</label>
+              <input type="url" id="pGithub" placeholder="https://github.com/username" />
+            </div>
+            <div class="form-group">
+              <label>Link LinkedIn</label>
+              <input type="url" id="pLinkedin" placeholder="https://linkedin.com/in/username" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Ringkasan Diri</label>
+            <textarea id="pSummary" rows="5" placeholder="Ceritakan tentang diri kamu..."></textarea>
+          </div>
+          <button class="btn-primary" id="saveProfileBtn">Simpan Profil</button>
+        </div>
+      </div>
+
+      <!-- ===== TAB: EXPERIENCE ===== -->
+      <div class="tab-pane" id="tab-experience">
+        <div class="card">
+          <h3 class="card-title">Tambah Pengalaman</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nama Perusahaan</label>
+              <input type="text" id="eCompany" placeholder="PT. ABC Indonesia" />
+            </div>
+            <div class="form-group">
+              <label>Posisi / Role</label>
+              <input type="text" id="eRole" placeholder="Web Developer" />
+            </div>
+            <div class="form-group">
+              <label>Periode</label>
+              <input type="text" id="ePeriod" placeholder="Jan 2024 - Des 2024" />
+            </div>
+            <div class="form-group">
+              <label>Tipe</label>
+              <select id="eType">
+                <option>Full Time</option><option>Part Time</option><option>Freelance</option>
+                <option>Magang</option><option>Praktik Kerja Lapangan</option><option>Studi Independen</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Poin Pekerjaan (satu poin per baris)</label>
+            <textarea id="ePoints" rows="4" placeholder="Mengembangkan fitur X&#10;Mengelola database Y&#10;Bekerja sama dengan tim Z"></textarea>
+          </div>
+          <button class="btn-primary" id="addExpBtn">Tambah Pengalaman</button>
+        </div>
+        <div class="items-list" id="expList"></div>
+      </div>
+
+      <!-- ===== TAB: EDUCATION ===== -->
+      <div class="tab-pane" id="tab-education">
+        <div class="card">
+          <h3 class="card-title">Tambah Pendidikan</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nama Sekolah / Universitas</label>
+              <input type="text" id="edSchool" placeholder="Universitas XYZ" />
+            </div>
+            <div class="form-group">
+              <label>Jurusan / Gelar</label>
+              <input type="text" id="edDegree" placeholder="S1 Teknologi Informasi" />
+            </div>
+            <div class="form-group">
+              <label>Periode</label>
+              <input type="text" id="edPeriod" placeholder="2021 - 2025" />
+            </div>
+            <div class="form-group">
+              <label>IPK (opsional)</label>
+              <input type="text" id="edGpa" placeholder="3.90/4.00" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Keterangan (opsional)</label>
+            <input type="text" id="edDesc" placeholder="Lulus dengan predikat..." />
+          </div>
+          <button class="btn-primary" id="addEduBtn">Tambah Pendidikan</button>
+        </div>
+        <div class="items-list" id="eduList"></div>
+      </div>
+
+      <!-- ===== TAB: PROJECTS ===== -->
+      <div class="tab-pane" id="tab-projects">
+        <div class="card">
+          <h3 class="card-title">Tambah Project</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nama Project</label>
+              <input type="text" id="prTitle" placeholder="My Awesome App" />
+            </div>
+            <div class="form-group">
+              <label>Gambar Project (opsional)</label>
+              <input type="file" id="prImage" accept="image/*" />
+            </div>
+            <div class="form-group">
+              <label>Link GitHub (opsional)</label>
+              <input type="url" id="prGithub" placeholder="https://github.com/..." />
+            </div>
+            <div class="form-group">
+              <label>Link Demo (opsional)</label>
+              <input type="url" id="prDemo" placeholder="https://..." />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea id="prDesc" rows="3" placeholder="Deskripsi singkat project..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Teknologi (pisahkan dengan koma)</label>
+            <input type="text" id="prTech" placeholder="Python, Django, PostgreSQL" />
+          </div>
+          <button class="btn-primary" id="addProjBtn">Tambah Project</button>
+        </div>
+        <div class="items-list" id="projList"></div>
+      </div>
+
+      <!-- ===== TAB: SKILLS ===== -->
+      <div class="tab-pane" id="tab-skills">
+        <div class="card">
+          <h3 class="card-title">Edit Keahlian</h3>
+          <div class="form-group">
+            <label>Hard Skills (pisahkan dengan koma)</label>
+            <textarea id="hardSkillsInput" rows="3" placeholder="Python, PHP, JavaScript, ..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Soft Skills (pisahkan dengan koma)</label>
+            <textarea id="softSkillsInput" rows="3" placeholder="Problem Solving, Komunikasi, ..."></textarea>
+          </div>
+          <button class="btn-primary" id="saveSkillsBtn">Simpan Keahlian</button>
+        </div>
+        <div class="card" style="margin-top:1rem">
+          <h3 class="card-title">Preview</h3>
+          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1rem">Hard Skills:</p>
+          <div id="hardPreview" class="skills-preview"></div>
+          <p style="color:var(--text-muted);font-size:0.85rem;margin:1rem 0 0.5rem">Soft Skills:</p>
+          <div id="softPreview" class="skills-preview soft"></div>
+        </div>
+      </div>
+
+      <!-- ===== TAB: CERTIFICATES ===== -->
+      <div class="tab-pane" id="tab-certificates">
+        <div class="card">
+          <h3 class="card-title">Tambah Sertifikat</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nama Sertifikat</label>
+              <input type="text" id="cTitle" placeholder="BNSP Network Administrator" />
+            </div>
+            <div class="form-group">
+              <label>Penerbit</label>
+              <input type="text" id="cIssuer" placeholder="BNSP" />
+            </div>
+            <div class="form-group">
+              <label>Tahun</label>
+              <input type="text" id="cYear" placeholder="2024" />
+            </div>
+            <div class="form-group">
+              <label>Upload File (opsional)</label>
+              <input type="file" id="cFile" accept="image/*,.pdf" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Atau Link URL (jika tidak upload file)</label>
+            <input type="url" id="cLink" placeholder="https://..." />
+          </div>
+          <button class="btn-primary" id="addCertBtn">Tambah Sertifikat</button>
+        </div>
+        <div class="items-list" id="certList"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
