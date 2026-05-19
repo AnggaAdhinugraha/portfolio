@@ -56,6 +56,7 @@ function renderProfile() {
 
   const githubEl = document.getElementById('heroGithub');
   const linkedinEl = document.getElementById('heroLinkedin');
+  const instagramEl = document.getElementById('heroInstagram');
 
   if (p.github) {
     githubEl.href = fixUrl(p.github);
@@ -67,6 +68,11 @@ function renderProfile() {
     linkedinEl.href = fixUrl(p.linkedin);
   } else {
     linkedinEl.style.display = 'none';
+  }
+
+  // Instagram — link statis, selalu tampil
+  if (instagramEl) {
+    instagramEl.href = 'https://www.instagram.com/ngrhaa.28?igsh=cmU4NTY2bXA3MjY0';
   }
 }
 
