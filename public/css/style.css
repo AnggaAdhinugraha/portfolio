@@ -341,7 +341,7 @@ body {
   background: var(--card); border: 1px solid var(--card-border);
   border-radius: var(--radius); padding: 1.5rem; flex: 1;
   transition: all var(--transition);
-  text-align: justify; /* ← ADDED */
+  text-align: justify;
 }
 .tl-body:hover {
   border-color: rgba(56,189,248,0.3);
@@ -350,17 +350,17 @@ body {
 .tl-company {
   font-family: var(--font-display);
   font-size: 1.1rem; font-weight: 700; color: var(--text);
-  text-align: left; /* judul tetap rata kiri */
+  text-align: left;
 }
 .tl-role {
   color: var(--accent); font-size: 0.9rem; font-weight: 500;
   margin-bottom: 0.3rem;
-  text-align: left; /* role tetap rata kiri */
+  text-align: left;
 }
 .tl-meta {
   display: flex; gap: 1rem; flex-wrap: wrap;
   margin-bottom: 1rem;
-  text-align: left; /* meta badge tetap rata kiri */
+  text-align: left;
 }
 .tl-period {
   font-size: 0.78rem; color: var(--text-muted);
@@ -377,7 +377,7 @@ body {
   font-size: 0.88rem; color: var(--text-dim);
   margin-bottom: 0.4rem; list-style: none;
   position: relative; padding-left: 1rem;
-  text-align: justify; /* ← sudah ada sebelumnya */
+  text-align: justify;
 }
 .tl-points li::before {
   content: '▸'; position: absolute; left: 0;
@@ -424,7 +424,7 @@ body {
 .project-desc {
   font-size: 0.85rem; color: var(--text-muted);
   margin-bottom: 1rem; line-height: 1.6;
-  text-align: justify; /* ← ADDED */
+  text-align: justify;
 }
 .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
 .tech-tag {
@@ -587,23 +587,55 @@ body {
   .hero-photo-ring { width: 260px; height: 260px; }
   .hero-name { font-size: clamp(1.4rem, 3vw, 2.2rem); }
 }
-@media (max-width: 680px) {
-  /* Hero: rata tengah seperti PC/laptop */
-  .hero { flex-direction: column !important; text-align: center !important; padding-top: 7rem; padding-left: 1.5rem; padding-right: 1.5rem; gap: 0 !important; }
-  .hero-content { order: 2 !important; max-width: 100%; text-align: center !important; }
-  .hero-photo-wrap { order: 1 !important; flex: none !important; align-self: center; margin-bottom: 1.5rem; }
-  .hero-badge { margin-top: 1rem; margin-bottom: 1.5rem; }
-  .hero-actions, .hero-socials { justify-content: center; }
-  .hero-photo { width: 200px; height: 200px; }
-  .hero-photo-ring { width: 220px; height: 220px; }
-  .hero-name { font-size: clamp(1.4rem, 6vw, 1.9rem); letter-spacing: -0.5px; text-align: center !important; }
-  .hero-title { text-align: center !important; }
-  .hero-sub { text-align: center !important; }
 
-  /* Konten: rata kiri */
-  .about-text, .about-text p { text-align: left !important; }
-  .tl-body, .tl-points li { text-align: left !important; }
-  .project-desc { text-align: left !important; }
-  .section-title, .section-label { text-align: left !important; }
-  .edu-title { text-align: left !important; }
+/* ========== MOBILE FIX (≤ 680px) ========== */
+@media (max-width: 680px) {
+  /* --- HERO LAYOUT --- */
+  .hero {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding-top: 6rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  /* Foto di atas, konten di bawah */
+  .hero-content { order: 2 !important; max-width: 100%; text-align: center !important; }
+  .hero-photo-wrap {
+    order: 1 !important;
+    flex: none !important;
+    align-self: center;
+    margin-top: 1rem;  /* jarak dari navbar */
+  }
+
+  /* Foto & ring ukuran */
+  .hero-photo      { width: 200px; height: 200px; }
+  .hero-photo-ring { width: 220px; height: 220px; }
+
+  /* Badge "Tersedia untuk Bekerja" — rata tengah */
+  .hero-badge {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-flex;
+  }
+
+  /* Nama, title, sub — rata tengah */
+  .hero-name  { font-size: clamp(1.6rem, 6vw, 2rem); letter-spacing: -0.5px; text-align: center !important; }
+  .hero-title { text-align: center !important; }
+  .hero-sub   { text-align: center !important; }
+
+  /* Tombol & social — rata tengah */
+  .hero-actions  { justify-content: center; }
+  .hero-socials  { justify-content: center; }
+
+  /* --- Deskripsi proyek, pengalaman, tentang saya — rata kiri --- */
+  .about-text,
+  .about-text p,
+  .tl-body,
+  .tl-points li,
+  .project-desc {
+    text-align: left !important;
+  }
 }
