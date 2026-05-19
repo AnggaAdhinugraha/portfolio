@@ -188,9 +188,7 @@ body {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 0.5rem;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
+  white-space: nowrap;
 }
 .hero-title {
   font-size: clamp(1rem, 2.5vw, 1.4rem);
@@ -572,7 +570,7 @@ body {
 }
 
 @media (max-width: 400px) {
-  .hero-name { font-size: clamp(1.4rem, 7vw, 1.9rem); }
+  .hero-name { font-size: clamp(1.3rem, 6vw, 1.7rem); }
   .about-stats { grid-template-columns: 1fr; }
 }
 
@@ -589,10 +587,12 @@ body {
   .hero-photo-ring { width: 260px; height: 260px; }
 }
 @media (max-width: 680px) {
-  .hero { flex-direction: column !important; text-align: center; padding-top: 7rem; }
+  .hero { flex-direction: column !important; text-align: left; padding-top: 7rem; padding-left: 1.5rem; padding-right: 1.5rem; }
   .hero-content { order: 2 !important; max-width: 100%; }
   .hero-photo-wrap { order: 1 !important; flex: none !important; }
-  .hero-actions, .hero-socials { justify-content: center; }
+  .hero-actions, .hero-socials { justify-content: flex-start; }
   .hero-photo { width: 200px; height: 200px; }
   .hero-photo-ring { width: 220px; height: 220px; }
+  .hero-name { font-size: clamp(1.5rem, 6.5vw, 2rem); white-space: normal; word-break: keep-all; overflow-wrap: normal; letter-spacing: -0.5px; }
+  .hero-badge { align-self: flex-start; }
 }
